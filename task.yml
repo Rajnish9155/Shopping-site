@@ -5,26 +5,26 @@
     - name: Copy Dockerfile
       copy:
        src: Dockerfile
-       dest: /home/admin-user
+       dest: /home/admin
     - name: Copy WAR file
       copy:
        src: target
-       dest: /home/admin-user
+       dest: /home/admin
     - name : Build image
-      command: docker build -t ramarao388/zomato730batch .
+      command: docker build -t cloudtech0132/zomato730batch .
     - name : Push Docker Image
-      command: docker push ramarao388/zomato730batch
+      command: docker push cloudtech0132/zomato730batch
 - name: Deployment into Kubernetes Cluster
   hosts: eks
   tasks:
    - name: 
      copy:
        src: DeploymentIntoK8sCluster.yml
-       dest: /home/admin-user
+       dest: /home/admin
    - name: 
      copy:
        src: LB-Service.yml
-       dest: /home/admin-user
+       dest: /home/admin
    - name : K8S Deployment
      command: kubectl apply -f DeploymentIntoK8sCluster.yml
    - name : LB Service
